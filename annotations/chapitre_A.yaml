@@ -1,0 +1,576 @@
+# Annotation manuelle Ch.A Qualiroutes — v1 (en cours)
+# Méthodologie : lecture séquentielle, classification par TYPE + SIGNAL observé.
+# Source : csc_samples/Chapitre A - modele.docx (après accept_all_revisions)
+#
+# Types utilisés :
+#   SECTION_TITLE       — titre de section (style CSC Titre N)
+#   META_COMMENT        — instruction au rédacteur (n'apparaît pas dans le CSC final)
+#   STRUCTURE_HEADER    — sous-titre normatif (souligné/gras+souligné), reste dans le CSC
+#   CHOICE_HEADER       — entête de variante mutuellement exclusive
+#   CHOICE_ITEM         — item d'une liste de choix (préfixé "- ")
+#   CSC_CONTENT         — texte CSC à conserver tel quel ou avec placeholders
+#   INLINE_PLACEHOLDER  — texte CSC contenant des "…" à compléter
+#   LEGAL_REF           — référence juridique stable (article X loi/ARP) — pas une question
+#
+# Pour chaque annotation :
+#   idx       : index paragraphe (après accept_all_revisions)
+#   type      : un des types ci-dessus
+#   signal    : ce qui m'a fait classifier ainsi (sera entrée des heuristiques)
+#   excerpt   : début du texte pour traçabilité
+#   notes     : observations méthodologiques (sémantique, lien, etc.)
+
+chapter: A
+source: "csc_samples/Chapitre A - modele.docx"
+generated_at: "2026-05-21"
+revision_accepted: true
+status: framework_complete
+# Annotations détaillées : Dérogations + sections 1-2 (gold standard pour heuristiques)
+# Catalogue patterns : balayage complet sections 3-11 + Partie 2 + Partie 3 + Annexe 1
+sections_covered: ["Dérogations (0-44)", "1. Pouvoir adjudicateur (45-101)", "2. Objet du marché (102-120)"]
+sections_scanned: ["3. Législation (121-250)", "5-11 (251-353)", "Partie 2 (354-574)", "Partie 3 (575-1123)", "Annexe 1 (1124-1208)"]
+
+# ---------------------------------------------------------------------------
+# SECTION : Dérogations (idx 0-44)
+# ---------------------------------------------------------------------------
+annotations:
+  - idx: 3
+    type: SECTION_TITLE
+    signal: "style=En-tête de table des matières + souligné"
+    excerpt: "Table des matières"
+    notes: "TOC du document — pas un titre CSC à proprement parler"
+
+  - idx: 6
+    type: SECTION_TITLE
+    signal: "style=CSC Titre 1"
+    excerpt: "Dérogations"
+
+  - idx: 8
+    type: STRUCTURE_HEADER
+    signal: "style=Normal + gras+souligné"
+    excerpt: "Dérogations aux règles générales d'exécution prévues par le CCT Qualiroutes"
+    notes: "Sous-titre normatif — RESTE dans le CSC final (≠ commentaire méta)"
+
+  - idx: 10
+    type: CSC_CONTENT
+    signal: "style=Normal sans formatage"
+    excerpt: "Voir Chapitre A (Clauses administratives) du CCT Qualiroutes"
+    notes: "Pointeur vers Qualiroutes — contenu CSC par défaut"
+
+  - idx: 12
+    type: STRUCTURE_HEADER
+    signal: "style=Normal + gras+souligné"
+    excerpt: "Dérogations au CCT Qualiroutes"
+
+  - idx: 14
+    type: META_COMMENT
+    signal: "souligné seul + incipit 'Indiquer et motiver'"
+    excerpt: "Indiquer et motiver les éventuelles modifications apportées aux clauses administratives du CCT QUALIROUTES."
+    notes: "QUESTION : y a-t-il des modifs aux clauses admin Qualiroutes ? Si silence → aucune modif."
+
+  - idx: 16
+    type: META_COMMENT
+    signal: "italique + texte exhortatif ('Il est rappelé que…')"
+    excerpt: "Il est rappelé que les dérogations aux clauses administratives doivent constituer l'exception."
+    notes: "Commentaire informatif / rappel juridique au rédacteur"
+
+  - idx: 18
+    type: STRUCTURE_HEADER
+    signal: "style=Normal + gras+souligné"
+    excerpt: "Dérogations aux règles générales d'exécution (autres que les dérogations prévues par le CCT Qualiroutes)"
+
+  - idx: 20
+    type: CSC_CONTENT
+    signal: "style=Normal sans formatage"
+    excerpt: "L'attention des soumissionnaires est attirée sur le fait que le présent Cahier spécial des charges déroge comme suit à l'arrêté royal du 14 janvier 2013…"
+    notes: "Phrase introductive — RESTE si dérogations à l'AR 14/01/2013, sinon silence"
+
+  - idx: 22
+    type: META_COMMENT
+    signal: "incipit 'Ajouter la liste...' + impératif"
+    excerpt: "Ajouter la liste des articles auxquels le CSC déroge et motiver, le cas échéant."
+    notes: "QUESTION : si dérogations à l'AR 14/01/2013, lister + motiver. Sinon silence."
+
+# ---------------------------------------------------------------------------
+# SECTION : 1. Pouvoir adjudicateur (idx 45-101)
+# Structure CHOIX MULTI-VARIANTES : le rédacteur choisit 1 parmi 4 variantes
+# (Région wallonne / SOFICO / Marché conjoint / Autres) et SUPPRIME les 3 autres.
+# ---------------------------------------------------------------------------
+  - idx: 45
+    type: SECTION_TITLE
+    signal: "style=CSC Titre 1"
+    excerpt: "1ère partie: Généralités"
+
+  - idx: 46
+    type: SECTION_TITLE
+    signal: "style=CSC Titre 2"
+    excerpt: "1. Pouvoir adjudicateur"
+
+  - idx: 48
+    type: META_COMMENT
+    signal: "italique + incipit 'Indiquer'"
+    excerpt: "Indiquer l'entité juridique (= disposant d'une personnalité juridique) puis le service gestionnaire."
+    notes: "Question contextuelle : qui est l'entité juridique ?"
+
+  - idx: 50
+    type: META_COMMENT
+    signal: "italique + incipit 'Selon l'hypothèse'"
+    excerpt: "Selon l'hypothèse, le ou les textes suivants sont à insérer:"
+    notes: "Méta-question : choisir parmi les variantes ci-dessous. Annonce la CHOICE_HEADER list qui suit."
+
+  - idx: 52
+    type: CHOICE_HEADER
+    signal: "style=Normal + souligné, pattern 'Pouvoir adjudicateur: X'"
+    excerpt: "Pouvoir adjudicateur: Région wallonne"
+    notes: "Variante 1/4 — mutuellement exclusive avec idx 64, 80, 98"
+    variant_group: "pouvoir_adjudicateur"
+    variant_id: "region_wallonne"
+
+  - idx: 54
+    type: CSC_CONTENT
+    signal: "style=Normal sans formatage, contenu de la variante 'Région wallonne'"
+    excerpt: "Le pouvoir adjudicateur est la Région wallonne représentée par son Gouvernement en la personne du Ministre ayant les travaux publics…"
+    variant_group: "pouvoir_adjudicateur"
+    variant_id: "region_wallonne"
+
+  - idx: 56
+    type: INLINE_PLACEHOLDER
+    signal: "présence de '…' (Direction …)"
+    excerpt: "Dans ce cadre, la Direction … assure la direction, le contrôle et la surveillance de l'exécution du marché."
+    variant_group: "pouvoir_adjudicateur"
+    variant_id: "region_wallonne"
+    placeholders: ["Direction …"]
+
+  - idx: 58
+    type: CSC_CONTENT
+    excerpt: "Service Public de Wallonie – Mobilité et Infrastructures"
+    variant_group: "pouvoir_adjudicateur"
+    variant_id: "region_wallonne"
+
+  - idx: 59
+    type: INLINE_PLACEHOLDER
+    signal: "ellipses '…' multiples"
+    excerpt: "Département … – Direction …"
+    variant_group: "pouvoir_adjudicateur"
+    variant_id: "region_wallonne"
+    placeholders: ["Département …", "Direction …"]
+
+  - idx: 60
+    type: INLINE_PLACEHOLDER
+    excerpt: "Rue …"
+    variant_group: "pouvoir_adjudicateur"
+    variant_id: "region_wallonne"
+    placeholders: ["Rue …"]
+
+  - idx: 61
+    type: INLINE_PLACEHOLDER
+    excerpt: "Code postal et Commune"
+    variant_group: "pouvoir_adjudicateur"
+    variant_id: "region_wallonne"
+    notes: "Pas de '…' explicite mais sémantiquement un placeholder (champ à remplir)"
+    placeholders: ["Code postal et Commune (libellé = placeholder)"]
+
+  - idx: 64
+    type: CHOICE_HEADER
+    signal: "style=Normal + souligné"
+    excerpt: "Pouvoir adjudicateur: SOFICO"
+    variant_group: "pouvoir_adjudicateur"
+    variant_id: "sofico"
+
+  - idx: 66
+    type: CSC_CONTENT
+    excerpt: "Le présent marché est exécuté pour le compte et au nom de la SOFICO (Société Wallonne de Financement Complémentaire des Infrastructures)…"
+    variant_group: "pouvoir_adjudicateur"
+    variant_id: "sofico"
+
+  # ... [idx 68, 70, 72-75 : pattern identique à la variante 1, omis ici pour concision]
+  - idx: 80
+    type: CHOICE_HEADER
+    signal: "style=Normal + souligné"
+    excerpt: "Marché conjoint Région wallonne et SOFICO:"
+    variant_group: "pouvoir_adjudicateur"
+    variant_id: "conjoint"
+
+  - idx: 98
+    type: CHOICE_HEADER
+    signal: "style=Normal + souligné"
+    excerpt: "Autres Pouvoirs adjudicateurs (communes, concessionnaires…):"
+    variant_group: "pouvoir_adjudicateur"
+    variant_id: "autres"
+
+  - idx: 100
+    type: META_COMMENT
+    signal: "incipit 'Pour les marchés...' + sémantique d'instruction"
+    excerpt: "Pour les marchés passés par d'autres pouvoirs adjudicateurs ou entre d'autres pouvoirs adjudicateurs, adapter le canevas."
+    notes: "Pas de formatage italique ici → signal textuel uniquement"
+    variant_group: "pouvoir_adjudicateur"
+    variant_id: "autres"
+
+# ---------------------------------------------------------------------------
+# SECTION : 2. Objet du marché et description des travaux (idx 102-120)
+# Structure CHECKLIST : le rédacteur doit décrire les travaux selon plusieurs axes
+# ---------------------------------------------------------------------------
+  - idx: 102
+    type: SECTION_TITLE
+    signal: "style=CSC Titre 2"
+    excerpt: "2. Objet du marché et description des travaux"
+
+  - idx: 105
+    type: CSC_CONTENT
+    excerpt: "Le présent marché est un marché de travaux. Le présent marché comprend l'exécution des travaux suivants:"
+    notes: "Phrase d'amorce, reste dans le CSC — sera suivie d'une description à fournir"
+
+  - idx: 107
+    type: META_COMMENT
+    signal: "italique + incipit 'Indiquer:'"
+    excerpt: "Indiquer:"
+    notes: "Annonce une liste d'items à compléter"
+
+  - idx: 108
+    type: META_COMMENT
+    signal: "préfixe '-' + suite d'un META_COMMENT, formulation impérative"
+    excerpt: "- Une description générale des travaux à réaliser;"
+    notes: "Question/checklist item : à fournir par le rédacteur"
+
+  - idx: 109
+    type: META_COMMENT
+    signal: "préfixe '-'"
+    excerpt: "- Les parties principales du ou des ouvrages à réaliser;"
+
+  - idx: 110
+    type: META_COMMENT
+    signal: "préfixe '-' + 'color' run-level (emphase éditoriale)"
+    excerpt: "- Le type de réseau sur lequel s'effectuent les travaux, conformément au B. 1. du CCT QUALIROUTES"
+    notes: "Color sur run → emphase, probable indication d'importance. Référence Qualiroutes B.1 = lien vers chapitre B."
+
+  - idx: 111
+    type: META_COMMENT
+    signal: "préfixe '-'"
+    excerpt: "- Si le marché comporte plusieurs parties et/ou lots ou plusieurs phases ayant leurs délais et leurs montants propres, les décrire ici."
+    notes: "Item CONDITIONNEL (incipit 'Si X, alors Y')"
+
+  - idx: 113
+    type: CSC_CONTENT
+    excerpt: "Les travaux décrits ci-dessus ne sont pas exhaustifs, le détail des travaux est repris dans les clauses techniques et le métré récapitulatif…"
+    notes: "Phrase juridique de transition — reste dans le CSC"
+
+  - idx: 115
+    type: CSC_CONTENT
+    excerpt: "Dans le cadre du présent marché, le pouvoir adjudicateur entend lutter contre le dumping social et la fraude sociale."
+
+  - idx: 117
+    type: META_COMMENT
+    signal: "italique + incipit 'Si le marché rentre dans...'"
+    excerpt: "Si le marché rentre dans le champ d'application de la circulaire du 7 septembre 2017 relative aux clauses sociales…"
+    notes: "Commentaire CONDITIONNEL : déclencher une clause si condition vraie"
+
+  - idx: 119
+    type: CSC_CONTENT
+    excerpt: "Il entend également renforcer la cohésion sociale et le développement durable en réalisant un effort de formation, d'insertion ou d'intégration socioprofessionnelle."
+
+# ---------------------------------------------------------------------------
+# Observations méthodologiques pour la suite
+# ---------------------------------------------------------------------------
+observations:
+  - "Italique non systématique pour META_COMMENT : incipits sémantiques sont signal complémentaire requis"
+  - "Souligné seul = CHOICE_HEADER (variantes mutuellement exclusives)"
+  - "Gras+souligné = STRUCTURE_HEADER (sous-section qui reste dans le CSC final, ≠ choix variantes)"
+  - "Color sur run = emphase éditoriale, à investiguer (idx 110)"
+  - "Placeholders : '…' explicite OU sémantique (Code postal et Commune)"
+  - "variant_group/variant_id permettent de tracer les variantes mutuellement exclusives"
+  - "Item de checklist (préfixe '-') peut être CHOICE_ITEM ou META_COMMENT selon le contexte parent"
+  - "Incipits méta récurrents : 'Indiquer', 'Si...', 'Selon l'hypothèse', 'Le cas échéant', 'Pour les...', 'Ajouter...'"
+
+incipit_patterns_so_far:
+  - "^Indiquer\\b"
+  - "^Selon l'hypothèse"
+  - "^Le cas échéant"
+  - "^Pour les "
+  - "^Ajouter "
+  - "^Si .{1,80}, "          # Si <condition>, <action>
+  - "^Il est rappelé"
+  - "adapter le canevas\\.?$"
+  - "^Préciser\\b"
+  - "^Supprimer\\b"
+  - "^En cas de "
+  - "^En fonction du "
+  - "^A défaut\\b"
+  - "^Exemple\\s*:"
+  - "^Exemples\\b"
+  - "^NB\\s*:"
+  - "^Note\\s*:"
+  - "^S'il échet"
+  - "^Définir\\b"
+  - "^Enumérer\\b"
+
+# ===========================================================================
+# CATALOGUE CONSOLIDÉ — tous les TYPES observés sur Ch.A (1208 paragraphes)
+# Chaque type liste son SIGNAL primaire + exemples (idx) trouvés
+# ===========================================================================
+patterns_catalog:
+
+  SECTION_TITLE:
+    description: "Titre de section ou sous-section, structure le chapitre"
+    primary_signal: "style=CSC Titre 1/2/3"
+    secondary_signal: "OU style=Heading 1/2/3 (variantes legacy)"
+    examples: [6, 45, 46, 102, 121, 251, 354, 357, 412, 460, 575, 579, 649, 787]
+    csc_action: "KEEP (titre conservé, peut être renommé)"
+
+  STRUCTURE_HEADER:
+    description: "Sous-titre normatif qui reste dans le CSC final"
+    primary_signal: "style=Normal + gras+souligné [b,u]"
+    secondary_signal: "OU style=Normal + souligné [u] dans contexte sous-section CSC Titre 3 (a/b/c)"
+    examples: [8, 12, 18, 359, 367, 371, 1083, 1090]
+    csc_action: "KEEP"
+    notes: "À distinguer de CHOICE_HEADER : ici les sous-titres COEXISTENT (ils ne s'excluent pas)"
+
+  CHOICE_HEADER:
+    description: "Entête de variante mutuellement exclusive — le rédacteur en choisit UNE et supprime les autres"
+    primary_signal: "style=Normal + souligné [u] dans contexte de meta_comment annonciateur"
+    secondary_signal: "Pattern textuel 'X: variante1', 'Hypothèse N:', 'Pouvoir adjudicateur: Y'"
+    examples: [52, 64, 80, 98, 411, 419, 605, 615]
+    csc_action: "KEEP_ONE_OF (élagage : garder une variante, supprimer les autres)"
+
+  CHOICE_ITEM:
+    description: "Item d'une liste de choix simples (puce ou tiret)"
+    primary_signal: "Préfixe '- ' ou '-soit ' après un META_COMMENT annonciateur"
+    secondary_signal: "Souvent en italique si le bloc parent l'est"
+    examples: [274, 275, 276, 277, 1086, 1087, 802, 803]
+    csc_action: "KEEP_ONE_OR_MORE"
+
+  CHOICE_SEPARATOR:
+    description: "Mot 'Ou' / 'ou' isolé entre deux alternatives"
+    primary_signal: "Paragraphe contenant uniquement 'Ou' / 'ou' (parfois italique)"
+    examples: [558, 629]
+    csc_action: "REMOVE (avec une des deux alternatives)"
+
+  META_COMMENT:
+    description: "Instruction au rédacteur sur quoi mettre — N'apparaît PAS dans le CSC final"
+    primary_signal: "Run italique [i] + incipit sémantique"
+    secondary_signal: "OU style=Body Text + incipit OU incipit textuel seul si italique perdu"
+    examples: [48, 50, 100, 107, 123, 255, 263, 272, 280, 285, 363, 407, 521, 522, 524, 565, 581, 794, 800]
+    csc_action: "REMOVE"
+    incipits: ["Indiquer", "Préciser", "Si X,", "Pour les", "Selon l'hypothèse", "Le cas échéant", "A défaut", "Supprimer", "Ajouter", "En cas de", "En fonction de", "Définir", "Enumérer", "S'il échet"]
+
+  LEGAL_REMINDER:
+    description: "Rappel juridique au rédacteur (n'est pas une instruction d'action)"
+    primary_signal: "Run italique [i] + incipit non impératif ('Il est rappelé', 'En règle générale', 'Pour mémoire', 'La durée totale...')"
+    examples: [16, 287, 384, 386, 388, 390, 409, 622, 624, 645, 791, 798, 805, 965, 973, 996, 998, 1003, 1004]
+    csc_action: "REMOVE"
+
+  EXAMPLE_HEADER:
+    description: "Annonce un bloc d'exemple/canevas reproductible"
+    primary_signal: "italique+souligné [i,u] + texte 'Exemple:', 'Exemples de clauses:'"
+    examples: [289, 309, 999]
+    csc_action: "REMOVE (le header lui-même)"
+
+  EXAMPLE_TEXT:
+    description: "Texte d'exemple/canevas que le rédacteur copie et adapte (le bloc lui-même est gardé, l'italique enlevé)"
+    primary_signal: "Bloc multi-paragraphes en italique après un EXAMPLE_HEADER"
+    examples: [291, 293, 294, 296, 298, 311, 313, 314, 315, 317, 319, 320, 321, 323, 325, 326, 327]
+    csc_action: "KEEP_AS_DRAFT (désitaliciser pour intégrer au CSC final)"
+    notes: "Distinction critique avec META_COMMENT : EXAMPLE_TEXT est du contenu de référence, pas une instruction"
+
+  CONDITIONAL_BLOCK:
+    description: "Bloc de paragraphes dont le formatage couleur signale qu'ils sont conditionnels"
+    primary_signal: "Run color [color] sur plusieurs paragraphes consécutifs"
+    examples: [110, 162, 212, 214, 216, 218, 220, 222, 224, 226, 233, 235, 237, 239, 298, 842, 844, 1006]
+    csc_action: "KEEP_IF_CONDITION (à élaguer si condition fausse)"
+    notes: "La couleur signale visuellement au rédacteur 'ce bloc est conditionnel'. Souvent introduit par un META_COMMENT avec 'Si X' ou 'En cas de Y'"
+
+  CSC_CONTENT:
+    description: "Texte CSC standard à conserver tel quel (ou avec adaptations mineures)"
+    primary_signal: "style=Normal sans formatage spécial, contenu narratif/juridique"
+    secondary_signal: "OU style=Sans interligne / Paragraphe de liste pour items de listes légales"
+    examples: [10, 20, 54, 105, 113, 115, 119, 131, 132, 188, 414, 422, 472, 490, 661, 691, 989]
+    csc_action: "KEEP"
+
+  INLINE_PLACEHOLDER:
+    description: "Texte CSC contenant des marqueurs à remplir"
+    primary_signal: "Présence de '…' (un ou plusieurs) dans le texte"
+    secondary_signal: "OU '………..' / '....' (points multiples) OU '(à compléter)' / '(à définir)' / '(à décrire)'"
+    examples: [56, 59, 60, 210, 307, 341, 342, 343, 344, 394, 609, 611, 682, 720, 994, 1133, 1136]
+    csc_action: "FILL"
+    placeholder_markers: ["…", "...", "...…", "(à compléter)", "(à définir)", "(à décrire)", "(à lister)", "A décrire"]
+
+  ENUMERATED_HEADER:
+    description: "Sous-section énumérée a) b) c) ou ARTICLE X (différent de CHOICE car cumulative, non exclusive)"
+    primary_signal: "style=Normal + souligné [u] + préfixe 'a)', 'b)', 'c)' OU 'ARTICLE N'"
+    examples: [359, 367, 371]
+    csc_action: "KEEP"
+
+  VARIANT_BLOCK_HEADER:
+    description: "Header de variante de bloc (sous-types d'une catégorie : Assurance TRC / Décennale)"
+    primary_signal: "style=Heading 9 + gras [b]"
+    examples: [659, 689, 763]
+    csc_action: "KEEP_ONE_OF (les blocs sont mutuellement exclusifs entre eux)"
+
+  SUB_BLOCK_HEADER:
+    description: "En-tête de subdivision au sein d'un bloc (Subdivision B1/B2/B3)"
+    primary_signal: "style=Normal + gras [b]"
+    examples: [583, 738, 744, 749]
+    csc_action: "KEEP"
+
+  ANNEX_TITLE:
+    description: "Titre principal d'une annexe"
+    primary_signal: "style=Normal + gras [b], souvent en caps, isolé"
+    examples: [1124, 1126, 1128, 1129]
+    csc_action: "KEEP"
+
+  ANNEX_SECTION_HEADER:
+    description: "En-tête de section dans une annexe (Acte d'engagement) — 3 signaux combinés"
+    primary_signal: "style=Normal + gras+color+italique [b,color,i] — combinaison TRES distinctive"
+    examples: [1139, 1141, 1152, 1159, 1164, 1182, 1199]
+    csc_action: "KEEP"
+
+  LIST_ITEM:
+    description: "Item de liste à puces dans annexe ou article"
+    primary_signal: "style=Liste à puces / Liste à puces 2 / retrait puce 1 / Paragraphe de liste / Puces 1"
+    examples: [731, 1143, 1144, 1148, 1149, 1171, 1184]
+    csc_action: "KEEP"
+
+  ARROW_SUB_ACTION:
+    description: "Sous-action procédurale (typiquement dans annexe checklist)"
+    primary_signal: "Préfixe '→' (flèche)"
+    examples: [1144, 1146, 1149, 1150, 1156, 1157, 1188, 1189]
+    csc_action: "KEEP"
+
+  NUMBERED_PROCEDURE:
+    description: "Étape numérotée d'une procédure (1) 2) 3) ...)"
+    primary_signal: "Préfixe '1)', '2)', '3)' au début du paragraphe"
+    examples: [437, 438, 442, 444, 445, 446, 447, 448]
+    csc_action: "KEEP"
+
+  DOCUMENT_NOTE:
+    description: "Note méta sur tout le document (Note: ..., NB: ...)"
+    primary_signal: "italique+souligné [i,u] + incipit 'Note:', 'NB:', 'Pour mémoire'"
+    examples: [577]
+    csc_action: "REMOVE"
+
+  NOTA_BENE:
+    description: "Note explicative juridique IN-LINE qui RESTE dans le CSC"
+    primary_signal: "Incipit 'NB :' sans formatage italique"
+    examples: [428]
+    csc_action: "KEEP"
+    notes: "À distinguer de DOCUMENT_NOTE par le formatage (italique ou non)"
+
+  EMPTY_LIST_PLACEHOLDER:
+    description: "Item de liste vide à compléter (juste un tiret)"
+    primary_signal: "Paragraphe contenant uniquement '-' ou '- '"
+    examples: [683, 684, 685, 721, 722, 723]
+    csc_action: "FILL_OR_REMOVE"
+
+# ===========================================================================
+# HEURISTIQUES — règles candidates (v1) à implémenter dans tools/extract_questions.py
+# Ordre = priorité (la première règle qui matche gagne)
+# ===========================================================================
+heuristics_v1:
+  - rule_id: H01_section_title
+    if: "style ∈ {CSC Titre 1, CSC Titre 2, CSC Titre 3, Heading 1, Heading 2, Heading 3}"
+    then: SECTION_TITLE
+    confidence: high
+
+  - rule_id: H02_document_note
+    if: "run_fmt has [i,u] AND text starts with /^Note\\s*:|^NB\\s*:/"
+    then: DOCUMENT_NOTE
+    confidence: high
+
+  - rule_id: H03_example_header
+    if: "run_fmt has [i,u] AND text starts with /^Exemple/i"
+    then: EXAMPLE_HEADER
+    confidence: high
+
+  - rule_id: H04_annex_section_header
+    if: "run_fmt has [b,i,color] (les 3 combinés)"
+    then: ANNEX_SECTION_HEADER
+    confidence: high
+
+  - rule_id: H05_variant_block_header
+    if: "style = Heading 9 AND run_fmt has [b]"
+    then: VARIANT_BLOCK_HEADER
+    confidence: high
+
+  - rule_id: H06_structure_header
+    if: "run_fmt has [b,u] AND style = Normal"
+    then: STRUCTURE_HEADER
+    confidence: high
+
+  - rule_id: H07_enumerated_header
+    if: "run_fmt has [u] AND text matches /^[a-z]\\)/ OR /^ARTICLE\\s+\\d+/"
+    then: ENUMERATED_HEADER
+    confidence: high
+
+  - rule_id: H08_choice_header
+    if: "run_fmt has [u] AND (text contains ':' OR matches Hypothèse/Pouvoir adjudicateur)"
+    then: CHOICE_HEADER
+    confidence: medium
+
+  - rule_id: H09_choice_separator
+    if: "text matches /^[Oo]u\\.?$/ (paragraphe = 'Ou' seul)"
+    then: CHOICE_SEPARATOR
+    confidence: high
+
+  - rule_id: H10_empty_list_placeholder
+    if: "text matches /^-\\s*$/"
+    then: EMPTY_LIST_PLACEHOLDER
+    confidence: high
+
+  - rule_id: H11_meta_comment_italic
+    if: "run_fmt has [i] AND incipit ∈ meta_incipits AND NOT inside example_block"
+    then: META_COMMENT
+    confidence: high
+
+  - rule_id: H12_legal_reminder_italic
+    if: "run_fmt has [i] AND incipit ∈ {Il est rappelé, En règle générale, Pour mémoire, La durée totale, ...}"
+    then: LEGAL_REMINDER
+    confidence: medium
+
+  - rule_id: H13_example_text
+    if: "run_fmt has [i] AND inside_example_block (préc. EXAMPLE_HEADER, mêmes runs italiques consécutifs)"
+    then: EXAMPLE_TEXT
+    confidence: medium
+
+  - rule_id: H14_conditional_block
+    if: "run_fmt has [color] (regrouper paragraphes consécutifs avec color)"
+    then: CONDITIONAL_BLOCK
+    confidence: medium
+
+  - rule_id: H15_choice_item
+    if: "text matches /^-\\s+/ OR /^-soit\\s+/ AND parent is META_COMMENT or CHOICE_HEADER"
+    then: CHOICE_ITEM
+    confidence: medium
+
+  - rule_id: H16_meta_comment_bodytext
+    if: "style = Body Text AND incipit ∈ meta_incipits"
+    then: META_COMMENT
+    confidence: medium
+
+  - rule_id: H17_inline_placeholder
+    if: "text contains '…' OR matches /(à compléter|à définir|à décrire|à lister)/"
+    then: INLINE_PLACEHOLDER
+    confidence: high
+
+  - rule_id: H18_meta_comment_text_only
+    if: "style = Normal AND incipit ∈ meta_incipits AND no other classification"
+    then: META_COMMENT
+    confidence: low
+    notes: "Fallback pour les meta comments dont l'italique a été perdu"
+
+  - rule_id: H19_list_item
+    if: "style ∈ {Liste à puces, Liste à puces 2, retrait puce 1, Paragraphe de liste, Puces 1}"
+    then: LIST_ITEM
+    confidence: high
+
+  - rule_id: H20_numbered_procedure
+    if: "text matches /^\\d+\\)\\s+/"
+    then: NUMBERED_PROCEDURE
+    confidence: high
+
+  - rule_id: H21_arrow_sub_action
+    if: "text starts with '→'"
+    then: ARROW_SUB_ACTION
+    confidence: high
+
+  - rule_id: H99_default
+    if: "no rule matched"
+    then: CSC_CONTENT
+    confidence: low
