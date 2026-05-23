@@ -1,0 +1,475 @@
+{
+  "task_session_id": "20260521T190317+0200_python_dockx",
+  "objective": "Adapt cross-agent review synchronization infrastructure from Gestion_Projet and Depollution_Sols into Python_Dockx and add an initial project skill",
+  "review_agent": "codex",
+  "review_agent_source": "start-task-arg",
+  "snapshot": {
+    "reviewed_at_local": "2026-05-21T19:03:17.263882+02:00",
+    "cwd": "/home/zack/Documents/Python_Dockx",
+    "repo_root": "/home/zack/Documents/Python_Dockx",
+    "git_head": "e45454602b53e8e572b179ccf1c91093ec9f4ed7",
+    "reviewed_revision": "e45454602b53e8e572b179ccf1c91093ec9f4ed7+dirty",
+    "dirty_at_start": true,
+    "git_status_short_lines": [
+      "?? annotations/",
+      "?? csc_samples/",
+      "?? src/docx/revisions.py",
+      "?? tests/test_revisions.py",
+      "?? tools/"
+    ],
+    "git_diff_stat_lines": [
+      "(no diff stat)"
+    ],
+    "changed_files": [
+      "annotations/chapitre_A.yaml",
+      "csc_samples/Chapitre A - modele.doc",
+      "csc_samples/Chapitre A - modele.docx",
+      "csc_samples/Chapitre B - modele.doc",
+      "csc_samples/Chapitre B - modele.docx",
+      "csc_samples/Chapitre C - modele.doc",
+      "csc_samples/Chapitre C - modele.docx",
+      "csc_samples/Chapitre D - modele.doc",
+      "csc_samples/Chapitre D - modele.docx",
+      "csc_samples/Chapitre E - modele.doc",
+      "csc_samples/Chapitre E - modele.docx",
+      "csc_samples/Chapitre F - modele.doc",
+      "csc_samples/Chapitre F - modele.docx",
+      "csc_samples/Chapitre G - modele.doc",
+      "csc_samples/Chapitre G - modele.docx",
+      "csc_samples/Chapitre H - modele.doc",
+      "csc_samples/Chapitre H - modele.docx",
+      "csc_samples/Chapitre I - modele.doc",
+      "csc_samples/Chapitre I - modele.docx",
+      "csc_samples/Chapitre J - modele.doc",
+      "csc_samples/Chapitre J - modele.docx",
+      "csc_samples/Chapitre K - modele.doc",
+      "csc_samples/Chapitre K - modele.docx",
+      "csc_samples/Chapitre L - modele.doc",
+      "csc_samples/Chapitre L - modele.docx",
+      "csc_samples/Chapitre M - modele.doc",
+      "csc_samples/Chapitre M - modele.docx",
+      "csc_samples/Chapitre N - modele.doc",
+      "csc_samples/Chapitre N - modele.docx",
+      "csc_samples/Chapitre O - modele.doc",
+      "csc_samples/Chapitre O - modele.docx",
+      "csc_samples/Chapitre P - modele.doc",
+      "csc_samples/Chapitre P - modele.docx",
+      "csc_samples/II_24_O_De Myttenaere_Code de bonne pratique CRR.doc",
+      "csc_samples/II_24_O_De Myttenaere_Code de bonne pratique CRR.docx",
+      "src/docx/revisions.py",
+      "tests/test_revisions.py",
+      "tools/audit_coverage.py",
+      "tools/dump_paragraphs.py"
+    ]
+  },
+  "expected_files": [
+    "scripts/sync_reviews.py",
+    "scripts/sync_reviews_watch.py",
+    "scripts/sync_review_bootstrap.py",
+    "scripts/check_handoff.py",
+    "review/agents.json",
+    "review/_protocol/handoff_template.md",
+    "review/codex/handoff/001_2026-05-21_python_dockx_sync_foundation.md",
+    "knowledge/80_summaries/team_review_latest.md",
+    "knowledge/80_summaries/team_review_changelog.md",
+    "knowledge/coding_feedback/tool_failures.jsonl",
+    "mcp/catalog.json",
+    "mcp/review_sync_state.json",
+    "systemd/python-dockx-review-sync-watch.service",
+    "skills/python-dockx-csc/SKILL.md",
+    "skills/python-dockx-csc/agents/openai.yaml",
+    "tests/test_sync_reviews.py",
+    "tests/test_check_handoff.py"
+  ],
+  "risks": [
+    "Preserve existing untracked user files and upstream python-docx behavior",
+    "Keep review history local to Python_Dockx, not mixed with Gestion_Projet or Depollution_Sols",
+    "Do not introduce network or model-provider calls in the sync layer"
+  ],
+  "baseline_checks": [
+    {
+      "command": "python3 -m pytest -q tests/test_package.py tests/test_settings.py",
+      "status": "failed",
+      "exit_code": 2,
+      "duration_seconds": 1.072324,
+      "recorded_at_local": "2026-05-21T19:05:56.044057+02:00",
+      "stdout_tail": [
+        "",
+        "==================================== ERRORS ====================================",
+        "____________________ ERROR collecting tests/test_package.py ____________________",
+        "ImportError while importing test module '/home/zack/Documents/Python_Dockx/tests/test_package.py'.",
+        "Hint: make sure your test modules/packages have valid Python names.",
+        "Traceback:",
+        "../../anaconda3/lib/python3.13/importlib/__init__.py:88: in import_module",
+        "    return _bootstrap._gcd_import(name[level:], package, level)",
+        "           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^",
+        "tests/test_package.py:9: in <module>",
+        "    from docx.image.image import Image",
+        "E   ModuleNotFoundError: No module named 'docx'",
+        "___________________ ERROR collecting tests/test_settings.py ____________________",
+        "ImportError while importing test module '/home/zack/Documents/Python_Dockx/tests/test_settings.py'.",
+        "Hint: make sure your test modules/packages have valid Python names.",
+        "Traceback:",
+        "../../anaconda3/lib/python3.13/importlib/__init__.py:88: in import_module",
+        "    return _bootstrap._gcd_import(name[level:], package, level)",
+        "           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^",
+        "tests/test_settings.py:9: in <module>",
+        "    from docx.settings import Settings",
+        "E   ModuleNotFoundError: No module named 'docx'",
+        "=========================== short test summary info ============================",
+        "ERROR tests/test_package.py",
+        "ERROR tests/test_settings.py",
+        "!!!!!!!!!!!!!!!!!!! Interrupted: 2 errors during collection !!!!!!!!!!!!!!!!!!!!",
+        "2 errors in 0.16s"
+      ],
+      "stderr_tail": [],
+      "phase": "baseline"
+    },
+    {
+      "command": "PYTHONPATH=src python3 -m pytest -q tests/test_package.py tests/test_settings.py",
+      "status": "passed",
+      "exit_code": 0,
+      "duration_seconds": 1.310436,
+      "recorded_at_local": "2026-05-21T19:07:54.645356+02:00",
+      "stdout_tail": [
+        ".................                                                        [100%]",
+        "17 passed in 0.53s"
+      ],
+      "stderr_tail": [],
+      "phase": "baseline"
+    }
+  ],
+  "post_change_checks": [
+    {
+      "command": "python3 -m py_compile scripts/sync_reviews.py scripts/sync_reviews_watch.py scripts/sync_review_bootstrap.py scripts/check_handoff.py",
+      "status": "passed",
+      "exit_code": 0,
+      "duration_seconds": 0.077699,
+      "recorded_at_local": "2026-05-21T19:14:26.976598+02:00",
+      "stdout_tail": [],
+      "stderr_tail": [],
+      "phase": "post-change"
+    },
+    {
+      "command": "python3 -m pytest -q tests/test_sync_reviews.py tests/test_check_handoff.py",
+      "status": "passed",
+      "exit_code": 0,
+      "duration_seconds": 0.490676,
+      "recorded_at_local": "2026-05-21T19:14:37.617181+02:00",
+      "stdout_tail": [
+        "....                                                                     [100%]",
+        "4 passed in 0.07s"
+      ],
+      "stderr_tail": [],
+      "phase": "post-change"
+    },
+    {
+      "command": "PYTHONPATH=src python3 -m pytest -q tests/test_package.py tests/test_settings.py",
+      "status": "passed",
+      "exit_code": 0,
+      "duration_seconds": 0.669864,
+      "recorded_at_local": "2026-05-21T19:14:48.382007+02:00",
+      "stdout_tail": [
+        ".................                                                        [100%]",
+        "17 passed in 0.25s"
+      ],
+      "stderr_tail": [],
+      "phase": "post-change"
+    },
+    {
+      "command": "python3 scripts/check_handoff.py --all",
+      "status": "passed",
+      "exit_code": 0,
+      "duration_seconds": 0.068959,
+      "recorded_at_local": "2026-05-21T19:14:57.707620+02:00",
+      "stdout_tail": [
+        "review/codex/handoff/001_2026-05-21_python_dockx_sync_foundation.md: 0 error(s), 0 warning(s)"
+      ],
+      "stderr_tail": [],
+      "phase": "post-change"
+    },
+    {
+      "command": "python3 scripts/sync_reviews.py --once",
+      "status": "passed",
+      "exit_code": 0,
+      "duration_seconds": 0.052924,
+      "recorded_at_local": "2026-05-21T19:15:04.373880+02:00",
+      "stdout_tail": [
+        "Review sync OK - agents=3, collect_created=0, collect_updated=0, broadcast_created=0, broadcast_updated=0, documents=2, errors=0"
+      ],
+      "stderr_tail": [],
+      "phase": "post-change"
+    },
+    {
+      "command": "python3 /home/zack/.codex/skills/.system/skill-creator/scripts/quick_validate.py skills/python-dockx-csc",
+      "status": "passed",
+      "exit_code": 0,
+      "duration_seconds": 0.053495,
+      "recorded_at_local": "2026-05-21T19:15:14.858933+02:00",
+      "stdout_tail": [
+        "Skill is valid!"
+      ],
+      "stderr_tail": [],
+      "phase": "post-change"
+    },
+    {
+      "command": "python3 -m ruff check scripts/sync_reviews.py scripts/sync_reviews_watch.py scripts/sync_review_bootstrap.py scripts/check_handoff.py tests/test_sync_reviews.py tests/test_check_handoff.py",
+      "status": "failed",
+      "exit_code": 1,
+      "duration_seconds": 0.07775,
+      "recorded_at_local": "2026-05-21T19:15:30.581970+02:00",
+      "stdout_tail": [
+        "scripts/check_handoff.py:2:1: I001 [*] Import block is un-sorted or un-formatted",
+        "   |",
+        " 1 |   #!/usr/bin/env python3",
+        " 2 | / from __future__ import annotations",
+        " 3 | |",
+        " 4 | | import argparse",
+        " 5 | | import json",
+        " 6 | | import re",
+        " 7 | | import sys",
+        " 8 | | from dataclasses import asdict, dataclass, field",
+        " 9 | | from pathlib import Path",
+        "10 | | from typing import Any",
+        "   | |______________________^ I001",
+        "   |",
+        "   = help: Organize imports",
+        "",
+        "scripts/check_handoff.py:106:9: SIM114 [*] Combine `if` branches using logical `or` operator",
+        "    |",
+        "104 |               inner = value[1:-1].strip()",
+        "105 |               metadata[key] = [item.strip() for item in inner.split(\",\") if item.strip()]",
+        "106 | /         elif value.startswith('\"') and value.endswith('\"'):",
+        "107 | |             metadata[key] = value[1:-1]",
+        "108 | |         elif value.startswith(\"'\") and value.endswith(\"'\"):",
+        "109 | |             metadata[key] = value[1:-1]",
+        "    | |_______________________________________^ SIM114",
+        "110 |           elif value.lower() in {\"true\", \"false\"}:",
+        "111 |               metadata[key] = value.lower() == \"true\"",
+        "    |",
+        "    = help: Combine `if` branches",
+        "",
+        "scripts/check_handoff.py:143:101: E501 Line too long (106 > 100)",
+        "    |",
+        "141 |     path_agent, path_kind = infer_agent_and_kind(path)",
+        "142 |     declared_kind = str(metadata.get(\"type\") or path_kind or \"\").strip()",
+        "143 |     required = HANDOFF_REQUIRED_FRONTMATTER if declared_kind == \"handoff\" else COMMON_REQUIRED_FRONTMATTER",
+        "    |                                                                                                     ^^^^^^ E501",
+        "144 |",
+        "145 |     for field_name in required:",
+        "    |",
+        "... truncated 233 more line(s)"
+      ],
+      "stderr_tail": [],
+      "phase": "post-change"
+    },
+    {
+      "command": "python3 -m ruff check scripts/sync_reviews.py scripts/sync_reviews_watch.py scripts/sync_review_bootstrap.py scripts/check_handoff.py tests/test_sync_reviews.py tests/test_check_handoff.py",
+      "status": "passed",
+      "exit_code": 0,
+      "duration_seconds": 0.050917,
+      "recorded_at_local": "2026-05-21T19:16:57.922645+02:00",
+      "stdout_tail": [
+        "All checks passed!"
+      ],
+      "stderr_tail": [],
+      "phase": "post-change"
+    },
+    {
+      "command": "python3 -m py_compile scripts/sync_reviews.py scripts/sync_reviews_watch.py scripts/sync_review_bootstrap.py scripts/check_handoff.py",
+      "status": "passed",
+      "exit_code": 0,
+      "duration_seconds": 0.042549,
+      "recorded_at_local": "2026-05-21T19:17:04.159987+02:00",
+      "stdout_tail": [],
+      "stderr_tail": [],
+      "phase": "post-change"
+    },
+    {
+      "command": "python3 -m pytest -q tests/test_sync_reviews.py tests/test_check_handoff.py",
+      "status": "passed",
+      "exit_code": 0,
+      "duration_seconds": 0.501119,
+      "recorded_at_local": "2026-05-21T19:17:09.989353+02:00",
+      "stdout_tail": [
+        "....                                                                     [100%]",
+        "4 passed in 0.06s"
+      ],
+      "stderr_tail": [],
+      "phase": "post-change"
+    },
+    {
+      "command": "PYTHONPATH=src python3 -m pytest -q tests/test_package.py tests/test_settings.py",
+      "status": "passed",
+      "exit_code": 0,
+      "duration_seconds": 0.85593,
+      "recorded_at_local": "2026-05-21T19:17:18.092381+02:00",
+      "stdout_tail": [
+        ".................                                                        [100%]",
+        "17 passed in 0.33s"
+      ],
+      "stderr_tail": [],
+      "phase": "post-change"
+    },
+    {
+      "command": "python3 scripts/check_handoff.py --all",
+      "status": "passed",
+      "exit_code": 0,
+      "duration_seconds": 0.047433,
+      "recorded_at_local": "2026-05-21T19:17:29.713302+02:00",
+      "stdout_tail": [
+        "review/codex/handoff/001_2026-05-21_python_dockx_sync_foundation.md: 0 error(s), 0 warning(s)"
+      ],
+      "stderr_tail": [],
+      "phase": "post-change"
+    },
+    {
+      "command": "python3 scripts/sync_reviews.py --once",
+      "status": "passed",
+      "exit_code": 0,
+      "duration_seconds": 0.066085,
+      "recorded_at_local": "2026-05-21T19:17:34.910554+02:00",
+      "stdout_tail": [
+        "Review sync OK - agents=3, collect_created=0, collect_updated=0, broadcast_created=0, broadcast_updated=0, documents=2, errors=0"
+      ],
+      "stderr_tail": [],
+      "phase": "post-change"
+    },
+    {
+      "command": "python3 /home/zack/.codex/skills/.system/skill-creator/scripts/quick_validate.py skills/python-dockx-csc",
+      "status": "passed",
+      "exit_code": 0,
+      "duration_seconds": 0.035125,
+      "recorded_at_local": "2026-05-21T19:17:42.199823+02:00",
+      "stdout_tail": [
+        "Skill is valid!"
+      ],
+      "stderr_tail": [],
+      "phase": "post-change"
+    },
+    {
+      "command": "python3 -m ruff check scripts/sync_reviews.py scripts/sync_reviews_watch.py scripts/sync_review_bootstrap.py scripts/check_handoff.py tests/test_sync_reviews.py tests/test_check_handoff.py",
+      "status": "passed",
+      "exit_code": 0,
+      "duration_seconds": 0.046233,
+      "recorded_at_local": "2026-05-21T19:18:43.547282+02:00",
+      "stdout_tail": [
+        "All checks passed!"
+      ],
+      "stderr_tail": [],
+      "phase": "post-change"
+    },
+    {
+      "command": "python3 -m pytest -q tests/test_sync_reviews.py tests/test_check_handoff.py",
+      "status": "passed",
+      "exit_code": 0,
+      "duration_seconds": 0.525576,
+      "recorded_at_local": "2026-05-21T19:18:50.043630+02:00",
+      "stdout_tail": [
+        "....                                                                     [100%]",
+        "4 passed in 0.08s"
+      ],
+      "stderr_tail": [],
+      "phase": "post-change"
+    },
+    {
+      "command": "python3 scripts/check_handoff.py --all",
+      "status": "passed",
+      "exit_code": 0,
+      "duration_seconds": 0.096488,
+      "recorded_at_local": "2026-05-21T19:18:58.362934+02:00",
+      "stdout_tail": [
+        "review/codex/handoff/001_2026-05-21_python_dockx_sync_foundation.md: 0 error(s), 0 warning(s)"
+      ],
+      "stderr_tail": [],
+      "phase": "post-change"
+    },
+    {
+      "command": "python3 scripts/sync_reviews.py --once",
+      "status": "passed",
+      "exit_code": 0,
+      "duration_seconds": 0.09617,
+      "recorded_at_local": "2026-05-21T19:19:03.049921+02:00",
+      "stdout_tail": [
+        "Review sync OK - agents=3, collect_created=0, collect_updated=0, broadcast_created=0, broadcast_updated=0, documents=2, errors=0"
+      ],
+      "stderr_tail": [],
+      "phase": "post-change"
+    }
+  ],
+  "baseline_skip_reason": null,
+  "changed_files": [
+    "annotations/chapitre_A.yaml",
+    "change_sessions/20260521T190317+0200_python_dockx/change_receipt.json",
+    "change_sessions/20260521T190317+0200_python_dockx/closeout.md",
+    "change_sessions/20260521T190317+0200_python_dockx/closeout.md.change-receipt.json",
+    "change_sessions/20260521T190317+0200_python_dockx/session.json",
+    "change_sessions/20260521T190317+0200_python_dockx/task_snapshot.md",
+    "csc_samples/Chapitre A - modele.doc",
+    "csc_samples/Chapitre A - modele.docx",
+    "csc_samples/Chapitre B - modele.doc",
+    "csc_samples/Chapitre B - modele.docx",
+    "csc_samples/Chapitre C - modele.doc",
+    "csc_samples/Chapitre C - modele.docx",
+    "csc_samples/Chapitre D - modele.doc",
+    "csc_samples/Chapitre D - modele.docx",
+    "csc_samples/Chapitre E - modele.doc",
+    "csc_samples/Chapitre E - modele.docx",
+    "csc_samples/Chapitre F - modele.doc",
+    "csc_samples/Chapitre F - modele.docx",
+    "csc_samples/Chapitre G - modele.doc",
+    "csc_samples/Chapitre G - modele.docx",
+    "csc_samples/Chapitre H - modele.doc",
+    "csc_samples/Chapitre H - modele.docx",
+    "csc_samples/Chapitre I - modele.doc",
+    "csc_samples/Chapitre I - modele.docx",
+    "csc_samples/Chapitre J - modele.doc",
+    "csc_samples/Chapitre J - modele.docx",
+    "csc_samples/Chapitre K - modele.doc",
+    "csc_samples/Chapitre K - modele.docx",
+    "csc_samples/Chapitre L - modele.doc",
+    "csc_samples/Chapitre L - modele.docx",
+    "csc_samples/Chapitre M - modele.doc",
+    "csc_samples/Chapitre M - modele.docx",
+    "csc_samples/Chapitre N - modele.doc",
+    "csc_samples/Chapitre N - modele.docx",
+    "csc_samples/Chapitre O - modele.doc",
+    "csc_samples/Chapitre O - modele.docx",
+    "csc_samples/Chapitre P - modele.doc",
+    "csc_samples/Chapitre P - modele.docx",
+    "csc_samples/II_24_O_De Myttenaere_Code de bonne pratique CRR.doc",
+    "csc_samples/II_24_O_De Myttenaere_Code de bonne pratique CRR.docx",
+    "knowledge/80_summaries/team_review_changelog.md",
+    "knowledge/80_summaries/team_review_latest.md",
+    "knowledge/coding_feedback/tool_failures.jsonl",
+    "mcp/catalog.json",
+    "mcp/review_sync_state.json",
+    "review/_protocol/handoff_template.md",
+    "review/agents.json",
+    "review/claude/handoff/codex/handoff/001_2026-05-21_python_dockx_sync_foundation.md",
+    "review/claude/handoff/codex/handoff/001_2026-05-21_python_dockx_sync_foundation.md.receipt.json",
+    "review/codex/handoff/001_2026-05-21_python_dockx_sync_foundation.md",
+    "review/codex/handoff/001_2026-05-21_python_dockx_sync_foundation.md.receipt.json",
+    "review/global_handoff/codex/handoff/001_2026-05-21_python_dockx_sync_foundation.md",
+    "review/global_handoff/codex/handoff/001_2026-05-21_python_dockx_sync_foundation.md.receipt.json",
+    "review/kimi/handoff/codex/handoff/001_2026-05-21_python_dockx_sync_foundation.md",
+    "review/kimi/handoff/codex/handoff/001_2026-05-21_python_dockx_sync_foundation.md.receipt.json",
+    "scripts/check_handoff.py",
+    "scripts/sync_review_bootstrap.py",
+    "scripts/sync_reviews.py",
+    "scripts/sync_reviews_watch.py",
+    "skills/python-dockx-csc/SKILL.md",
+    "skills/python-dockx-csc/agents/openai.yaml",
+    "src/docx/revisions.py",
+    "systemd/python-dockx-review-sync-watch.service",
+    "tests/test_check_handoff.py",
+    "tests/test_revisions.py",
+    "tests/test_sync_reviews.py",
+    "tools/audit_coverage.py",
+    "tools/dump_paragraphs.py"
+  ],
+  "scientific_surface_matches": [],
+  "methodology_required": false,
+  "methodology_manifests": [],
+  "closeout_note_path": "/home/zack/Documents/Python_Dockx/change_sessions/20260521T190317+0200_python_dockx/closeout.md"
+}
