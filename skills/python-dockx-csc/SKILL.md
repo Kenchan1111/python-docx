@@ -47,6 +47,15 @@ python3 scripts/check_handoff.py --all
 python3 scripts/sync_reviews.py --once
 ```
 
+The bundled dispatcher can run the same repository tools from the skill folder:
+
+```bash
+python3 skills/python-dockx-csc/scripts/python_dockx_csc.py bootstrap --root .
+python3 skills/python-dockx-csc/scripts/python_dockx_csc.py check-handoff --all
+python3 skills/python-dockx-csc/scripts/python_dockx_csc.py sync --once
+python3 skills/python-dockx-csc/scripts/python_dockx_csc.py extract-questions csc_samples/"Chapitre A - modele.docx"
+```
+
 Handoffs, propositions, and corrections require frontmatter: `id`, `title`, `date`, `status`, `agent`, `type`, `synopsis`. Handoffs also require `reviewed_revision`.
 
 Never import the review history from `Gestion_Projet` or `Depollution_Sols` into this repo. Use those repos as patterns only.
@@ -61,3 +70,8 @@ Never import the review history from `Gestion_Projet` or `Depollution_Sols` into
 ## Handoffs
 
 Write a handoff when a change affects sync infrastructure, CSC document assumptions, OOXML behavior, or future agent work. Include the exact revision, files touched, validation run, and the next requested action.
+
+Agent-specific mirrors live under `.codex/skills/python-dockx-csc/`,
+`.claude/skills/python-dockx-csc/`, and `.kimi/skills/python-dockx-csc/`.
+Each mirror keeps the same repository boundaries but defaults handoffs to its
+own `review/<agent>/` namespace.
