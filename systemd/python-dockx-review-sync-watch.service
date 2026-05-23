@@ -1,0 +1,14 @@
+[Unit]
+Description=Python_Dockx CSC review sync watcher
+After=default.target
+
+[Service]
+Type=simple
+WorkingDirectory=/home/zack/Documents/Python_Dockx
+Environment=PYTHONUNBUFFERED=1
+ExecStart=/usr/bin/python3 /home/zack/Documents/Python_Dockx/scripts/sync_reviews_watch.py --poll-seconds 2 --debounce-seconds 2
+Restart=always
+RestartSec=2
+
+[Install]
+WantedBy=default.target

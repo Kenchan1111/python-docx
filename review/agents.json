@@ -1,0 +1,32 @@
+{
+  "schema_version": 1,
+  "policy": {
+    "agent_detection": "declarative",
+    "delete_inactive_agent_dirs": false,
+    "model_version_detection": "manual_or_agent_reported",
+    "notes": "Do not call model provider APIs from the sync layer. Keep Python_Dockx review history separate from Gestion_Projet and Depollution_Sols."
+  },
+  "agents": [
+    {
+      "id": "claude",
+      "display_name": "Claude",
+      "active": true,
+      "model": "unknown",
+      "version_source": "not_reported"
+    },
+    {
+      "id": "codex",
+      "display_name": "Codex",
+      "active": true,
+      "model": "unknown",
+      "version_source": "not_reported"
+    },
+    {
+      "id": "kimi",
+      "display_name": "Kimi",
+      "active": true,
+      "model": "unknown",
+      "version_source": "not_reported"
+    }
+  ]
+}

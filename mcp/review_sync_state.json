@@ -1,0 +1,39 @@
+{
+  "schema_version": 1,
+  "last_sync": "2026-05-21T19:19:03+02:00",
+  "records": [
+    {
+      "sync_key": "collect::review/codex/handoff/001_2026-05-21_python_dockx_sync_foundation.md::review/global_handoff/codex/handoff/001_2026-05-21_python_dockx_sync_foundation.md",
+      "channel": "collect",
+      "source_agent": "codex",
+      "target_agent": "global_handoff",
+      "review_kind": "handoff",
+      "source_path": "review/codex/handoff/001_2026-05-21_python_dockx_sync_foundation.md",
+      "target_path": "review/global_handoff/codex/handoff/001_2026-05-21_python_dockx_sync_foundation.md",
+      "digest": "f6ca017d45eefbb8ff51be4c79a8c262ad51946b16f76d11747514c9200c0229",
+      "status": "unchanged"
+    },
+    {
+      "sync_key": "broadcast::review/global_handoff/codex/handoff/001_2026-05-21_python_dockx_sync_foundation.md::review/claude/handoff/codex/handoff/001_2026-05-21_python_dockx_sync_foundation.md",
+      "channel": "broadcast",
+      "source_agent": "codex",
+      "target_agent": "claude",
+      "review_kind": "handoff",
+      "source_path": "review/global_handoff/codex/handoff/001_2026-05-21_python_dockx_sync_foundation.md",
+      "target_path": "review/claude/handoff/codex/handoff/001_2026-05-21_python_dockx_sync_foundation.md",
+      "digest": "f6ca017d45eefbb8ff51be4c79a8c262ad51946b16f76d11747514c9200c0229",
+      "status": "unchanged"
+    },
+    {
+      "sync_key": "broadcast::review/global_handoff/codex/handoff/001_2026-05-21_python_dockx_sync_foundation.md::review/kimi/handoff/codex/handoff/001_2026-05-21_python_dockx_sync_foundation.md",
+      "channel": "broadcast",
+      "source_agent": "codex",
+      "target_agent": "kimi",
+      "review_kind": "handoff",
+      "source_path": "review/global_handoff/codex/handoff/001_2026-05-21_python_dockx_sync_foundation.md",
+      "target_path": "review/kimi/handoff/codex/handoff/001_2026-05-21_python_dockx_sync_foundation.md",
+      "digest": "f6ca017d45eefbb8ff51be4c79a8c262ad51946b16f76d11747514c9200c0229",
+      "status": "unchanged"
+    }
+  ]
+}

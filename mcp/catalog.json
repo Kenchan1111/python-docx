@@ -1,0 +1,107 @@
+{
+  "schema_version": 1,
+  "last_sync": "2026-05-21T19:19:03+02:00",
+  "agents": [
+    "claude",
+    "codex",
+    "kimi"
+  ],
+  "stats": {
+    "documents": 2,
+    "errors": 0,
+    "collect": {
+      "created": 0,
+      "updated": 0,
+      "unchanged": 1
+    },
+    "broadcast": {
+      "created": 0,
+      "updated": 0,
+      "unchanged": 2
+    },
+    "by_kind": {
+      "handoff": 2
+    },
+    "by_owner": {
+      "codex": 2
+    }
+  },
+  "documents": [
+    {
+      "path": "review/codex/handoff/001_2026-05-21_python_dockx_sync_foundation.md",
+      "owner_agent": "codex",
+      "review_kind": "handoff",
+      "collection": "authored",
+      "title": "Python_Dockx CSC sync foundation",
+      "id": "codex-001",
+      "status": "active",
+      "date": "2026-05-21",
+      "agent": "codex",
+      "reviewed_revision": "e45454602b53e8e572b179ccf1c91093ec9f4ed7+dirty",
+      "has_frontmatter": true,
+      "frontmatter_errors": [],
+      "digest": "f6ca017d45ee",
+      "bytes": 1471,
+      "mtime": "2026-05-21T19:12:12",
+      "synopsis": "Initial local review-sync foundation for the Python_Dockx CSC automation fork.",
+      "receipt": "review/codex/handoff/001_2026-05-21_python_dockx_sync_foundation.md.receipt.json"
+    },
+    {
+      "path": "review/global_handoff/codex/handoff/001_2026-05-21_python_dockx_sync_foundation.md",
+      "owner_agent": "codex",
+      "review_kind": "handoff",
+      "collection": "global_structured",
+      "title": "Python_Dockx CSC sync foundation",
+      "id": "codex-001",
+      "status": "active",
+      "date": "2026-05-21",
+      "agent": "codex",
+      "reviewed_revision": "e45454602b53e8e572b179ccf1c91093ec9f4ed7+dirty",
+      "has_frontmatter": true,
+      "frontmatter_errors": [],
+      "digest": "f6ca017d45ee",
+      "bytes": 1471,
+      "mtime": "2026-05-21T19:12:39",
+      "synopsis": "Initial local review-sync foundation for the Python_Dockx CSC automation fork.",
+      "receipt": "review/global_handoff/codex/handoff/001_2026-05-21_python_dockx_sync_foundation.md.receipt.json"
+    }
+  ],
+  "collect_records": [
+    {
+      "sync_key": "collect::review/codex/handoff/001_2026-05-21_python_dockx_sync_foundation.md::review/global_handoff/codex/handoff/001_2026-05-21_python_dockx_sync_foundation.md",
+      "channel": "collect",
+      "source_agent": "codex",
+      "target_agent": "global_handoff",
+      "review_kind": "handoff",
+      "source_path": "review/codex/handoff/001_2026-05-21_python_dockx_sync_foundation.md",
+      "target_path": "review/global_handoff/codex/handoff/001_2026-05-21_python_dockx_sync_foundation.md",
+      "digest": "f6ca017d45eefbb8ff51be4c79a8c262ad51946b16f76d11747514c9200c0229",
+      "status": "unchanged"
+    }
+  ],
+  "broadcast_records": [
+    {
+      "sync_key": "broadcast::review/global_handoff/codex/handoff/001_2026-05-21_python_dockx_sync_foundation.md::review/claude/handoff/codex/handoff/001_2026-05-21_python_dockx_sync_foundation.md",
+      "channel": "broadcast",
+      "source_agent": "codex",
+      "target_agent": "claude",
+      "review_kind": "handoff",
+      "source_path": "review/global_handoff/codex/handoff/001_2026-05-21_python_dockx_sync_foundation.md",
+      "target_path": "review/claude/handoff/codex/handoff/001_2026-05-21_python_dockx_sync_foundation.md",
+      "digest": "f6ca017d45eefbb8ff51be4c79a8c262ad51946b16f76d11747514c9200c0229",
+      "status": "unchanged"
+    },
+    {
+      "sync_key": "broadcast::review/global_handoff/codex/handoff/001_2026-05-21_python_dockx_sync_foundation.md::review/kimi/handoff/codex/handoff/001_2026-05-21_python_dockx_sync_foundation.md",
+      "channel": "broadcast",
+      "source_agent": "codex",
+      "target_agent": "kimi",
+      "review_kind": "handoff",
+      "source_path": "review/global_handoff/codex/handoff/001_2026-05-21_python_dockx_sync_foundation.md",
+      "target_path": "review/kimi/handoff/codex/handoff/001_2026-05-21_python_dockx_sync_foundation.md",
+      "digest": "f6ca017d45eefbb8ff51be4c79a8c262ad51946b16f76d11747514c9200c0229",
+      "status": "unchanged"
+    }
+  ],
+  "errors": []
+}

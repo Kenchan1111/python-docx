@@ -1,0 +1,21 @@
+{
+  "receipt_version": 2,
+  "generated_by": "scripts/sync_reviews.py",
+  "review_session_id": "codex-001",
+  "note_path": "/home/zack/Documents/Python_Dockx/review/codex/handoff/001_2026-05-21_python_dockx_sync_foundation.md",
+  "note_rel_path": "review/codex/handoff/001_2026-05-21_python_dockx_sync_foundation.md",
+  "note_sha256": "f6ca017d45eefbb8ff51be4c79a8c262ad51946b16f76d11747514c9200c0229",
+  "sha256": "f6ca017d45eefbb8ff51be4c79a8c262ad51946b16f76d11747514c9200c0229",
+  "source_path": "review/codex/handoff/001_2026-05-21_python_dockx_sync_foundation.md",
+  "agent": "codex",
+  "source_agent": "codex",
+  "review_kind": "handoff",
+  "title": "Python_Dockx CSC sync foundation",
+  "date": "2026-05-21",
+  "status": "active",
+  "reviewed_revision": "e45454602b53e8e572b179ccf1c91093ec9f4ed7+dirty",
+  "frontmatter_valid": true,
+  "frontmatter_warnings": [],
+  "generated_at": "2026-05-21T19:12:39+02:00",
+  "updated_at": "2026-05-21T19:12:39+02:00"
+}

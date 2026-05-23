@@ -1,0 +1,7 @@
+interface:
+  display_name: "Python_Dockx CSC"
+  short_description: "Guide local CSC DOCX automation work"
+  default_prompt: "Use $python-dockx-csc to work on the local Python_Dockx CSC automation fork."
+
+policy:
+  allow_implicit_invocation: true
